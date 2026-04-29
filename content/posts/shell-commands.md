@@ -91,6 +91,95 @@ history | grep claude
 env | grep TASK
 ```
 
+### wc — 统计行数/词数/字节数
+
+```bash
+wc -l data.csv             # 统计行数（常用：快速知道数据集有多少行）
+wc -w readme.md            # 统计词数
+wc -l *.py                 # 统计每个 Python 文件的行数
+```
+
+### sort — 排序
+
+```bash
+sort results.txt                   # 按字母排序
+sort -n results.txt                # 按数值排序（默认是字典序，数字 9 会排在 10 后面）
+sort -rn results.txt               # 按数值倒序
+sort -t, -k2 data.csv              # 以逗号分隔，按第 2 列排序
+```
+
+### uniq — 去重
+
+通常跟 `sort` 搭配使用（`uniq` 只去除相邻的重复行）：
+
+```bash
+sort names.txt | uniq              # 排序并去重
+sort names.txt | uniq -c           # 去重并统计每个值出现的次数
+sort names.txt | uniq -d           # 只显示重复的行
+```
+
+### cut — 提取列/字段
+
+```bash
+cut -d, -f1 data.csv               # 以逗号分隔，提取第 1 列
+cut -d: -f1,3 /etc/passwd          # 以冒号分隔，提取第 1 和 3 列
+cut -c1-10 file.txt                # 提取每行的前 10 个字符
+```
+
+### tr — 字符替换
+
+```bash
+echo "hello world" | tr 'a-z' 'A-Z'    # 转大写
+cat file.txt | tr '\t' ','              # Tab 替换为逗号
+cat file.txt | tr -d '\r'               # 删除 Windows 换行符 (\r)
+```
+
+### sed — 流编辑器，批量替换
+
+AI 辅助编码中最常见的用法是批量替换文件中的文本：
+
+```bash
+# 替换文件中的文本（不会修改原文件，只输出结果）
+sed 's/old/new/' file.txt
+
+# 直接修改文件（-i）
+sed -i '' 's/old/new/g' file.txt      # macOS 写法
+sed -i 's/old/new/g' file.txt         # Linux 写法
+
+# 删除空行
+sed '/^$/d' file.txt
+
+# 删除第 5 行
+sed '5d' file.txt
+```
+
+### awk — 模式扫描与处理
+
+功能强大，这里只列最常用的场景：
+
+```bash
+# 按列提取（以空格/tab 分隔）
+awk '{print $1, $3}' data.txt         # 打印第 1 和第 3 列
+
+# 指定分隔符
+awk -F, '{print $2}' data.csv         # 以逗号分隔，打印第 2 列
+
+# 带条件的处理
+awk '$3 > 100 {print $1}' data.txt    # 第 3 列大于 100 时，打印第 1 列
+```
+
+### 组合使用
+
+这些命令配合管道可以完成复杂的数据处理：
+
+```bash
+# 从日志中提取状态码，排序并统计频次
+grep "HTTP" access.log | awk '{print $9}' | sort | uniq -c | sort -rn
+
+# 统计 CSV 文件中有多少个不同的城市
+cut -d, -f3 data.csv | sort | uniq | wc -l
+```
+
 ## 环境与进程管理
 
 ### export — 设置环境变量
@@ -162,6 +251,6 @@ type ll      # ll is an alias for ls -l
 | 分类 | 命令 | 用途 |
 |------|------|------|
 | 文件与目录 | `cd`, `cat`, `less`, `head`, `tail` | 切换目录、查看文件内容 |
-| 文本搜索 | `grep` | 搜索、过滤文本 |
+| 文本搜索与处理 | `grep`, `wc`, `sort`, `uniq`, `cut`, `tr`, `sed`, `awk` | 搜索、统计、排序、替换、提取 |
 | 环境与进程 | `export`, `source` | 设置变量、加载脚本 |
 | 信息查询 | `history`, `type` | 查看历史、查看命令类型 |
