@@ -3,7 +3,8 @@ languageCode = "zh-cn"
 locale = "zh-cn"
 title = "我的博客"
 theme = "PaperMod"
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 [params]
   env = "production"
