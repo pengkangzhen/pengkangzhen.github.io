@@ -2,6 +2,7 @@
 title: "Hello World"
 date: 2026-04-29
 draft: false
+categories: ["随想"]
 tags: ["博客", "第一篇"]
 summary: "这是我的第一篇博客文章"
 ---
