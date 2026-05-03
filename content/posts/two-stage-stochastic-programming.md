@@ -5,6 +5,7 @@ categories: ["学术"]
 tags: ["运筹学", "随机规划", "优化"]
 summary: "两阶段随机规划的核心概念梳理：RP、EV、EEV、WS、VSS、EVPI 的含义与直觉，附工厂生产数值示例。"
 draft: false
+math: true
 ---
 
 ## 一、 两阶段随机规划的一般形式
