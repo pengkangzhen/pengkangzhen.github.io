@@ -10,6 +10,12 @@
   });"></script>
 {{ end }}
 
+<style>
+:root {
+  --main-width: 1024px;
+}
+</style>
+
 {{ if .Param "ShowToc" }}
 <style>
 .toc-float {
@@ -25,10 +31,6 @@
     overflow-y: auto;
     font-size: 0.85rem;
     line-height: 1.6;
-    right: calc((100vw - var(--main-width, 720px)) / 2 - 280px);
-  }
-  .toc-float {
-    right: max(1rem, calc((100vw - 720px) / 2 - 280px));
   }
 }
 .toc-float-title {
@@ -56,3 +58,4 @@
 }
 </style>
 {{ end }}
+
