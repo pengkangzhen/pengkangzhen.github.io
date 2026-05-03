@@ -24,18 +24,6 @@ html {
 .toc-float {
   display: none;
 }
-@media (min-width: 1280px) {
-  .toc-float {
-    display: block;
-    position: fixed;
-    top: 80px;
-    width: 240px;
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    font-size: 0.85rem;
-    line-height: 1.6;
-  }
-}
 .toc-float-title {
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -60,5 +48,31 @@ html {
   text-decoration: underline;
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var toc = document.querySelector('.toc-float');
+  var main = document.querySelector('.post-single');
+  if (!toc || !main) return;
+  function positionToc() {
+    var rect = main.getBoundingClientRect();
+    var rightSpace = window.innerWidth - rect.right;
+    if (rightSpace > 260) {
+      toc.style.display = 'block';
+      toc.style.position = 'fixed';
+      toc.style.top = '80px';
+      toc.style.left = rect.right + 20 + 'px';
+      toc.style.width = Math.min(rightSpace - 20, 240) + 'px';
+      toc.style.maxHeight = 'calc(100vh - 100px)';
+      toc.style.overflowY = 'auto';
+      toc.style.fontSize = '0.85rem';
+      toc.style.lineHeight = '1.6';
+    } else {
+      toc.style.display = 'none';
+    }
+  }
+  positionToc();
+  window.addEventListener('resize', positionToc);
+});
+</script>
 {{ end }}
 
