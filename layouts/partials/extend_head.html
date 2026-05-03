@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function positionToc() {
     var rect = main.getBoundingClientRect();
     var leftSpace = rect.left;
-    if (leftSpace > 260) {
+    if (leftSpace > 300) {
       toc.style.display = 'block';
       toc.style.position = 'fixed';
       toc.style.top = '80px';
       toc.style.right = '';
-      var tocWidth = Math.min(leftSpace - 20, 240);
+      var tocWidth = Math.min(leftSpace - 10, 280);
       toc.style.left = Math.max(10, leftSpace / 2 - tocWidth / 2) + 'px';
       toc.style.width = tocWidth + 'px';
       toc.style.maxHeight = 'calc(100vh - 100px)';
