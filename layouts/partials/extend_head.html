@@ -9,3 +9,63 @@
     ]
   });"></script>
 {{ end }}
+
+{{ if .Param "ShowToc" }}
+<style>
+.toc-float-wrapper {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+}
+.post-content {
+  flex: 1;
+  min-width: 0;
+}
+.toc-float {
+  width: 220px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.toc-float-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.toc-float ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.toc-float ul ul {
+  padding-left: 1rem;
+}
+.toc-float li {
+  margin-bottom: 0.25rem;
+}
+.toc-float a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+.toc-float a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 1024px) {
+  .toc-float-wrapper {
+    flex-direction: column;
+  }
+  .toc-float {
+    width: 100%;
+    position: static;
+    max-height: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+</style>
+{{ end }}
