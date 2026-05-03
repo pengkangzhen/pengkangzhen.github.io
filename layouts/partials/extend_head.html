@@ -12,24 +12,24 @@
 
 {{ if .Param "ShowToc" }}
 <style>
-.toc-float-wrapper {
-  display: flex;
-  gap: 2rem;
-  position: relative;
-}
-.post-content {
-  flex: 1;
-  min-width: 0;
-}
 .toc-float {
-  width: 220px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 80px;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
-  font-size: 0.85rem;
-  line-height: 1.6;
+  display: none;
+}
+@media (min-width: 1280px) {
+  .toc-float {
+    display: block;
+    position: fixed;
+    top: 80px;
+    width: 240px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    right: calc((100vw - var(--main-width, 720px)) / 2 - 280px);
+  }
+  .toc-float {
+    right: max(1rem, calc((100vw - 720px) / 2 - 280px));
+  }
 }
 .toc-float-title {
   font-weight: 700;
@@ -53,19 +53,6 @@
 }
 .toc-float a:hover {
   text-decoration: underline;
-}
-@media (max-width: 1024px) {
-  .toc-float-wrapper {
-    flex-direction: column;
-  }
-  .toc-float {
-    width: 100%;
-    position: static;
-    max-height: none;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-  }
 }
 </style>
 {{ end }}
