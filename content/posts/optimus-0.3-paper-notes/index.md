@@ -78,10 +78,10 @@ OptiMUS-0.3 中的每一个 LLM 组件都由一个自然语言指令（Prompt）
 ### 反思提示 (Reflective Prompts)
 
 针对运筹学建模中常见的错误设计特定的反思问题。例如，让 LLM 检查"约束等号两边的单位是否一致？"或"该值是已知的参数还是未知的变量？"，从而让 LLM 自我发现并纠正建模错误。以图3为例：
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/48146c2eeffc4444a5500c6643944518.png)
+![变量类型判断流程图](figure3.png)
 另外一个例子是Figure10：
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/895e866eb14b4863b1bac3c640731d91.png)
+![置信度评估示例](figure10.png)
 
 ### 基于置信度的反馈 (Confidence-based Feedback)
 要求 LLM 对其生成的约束或代码进行 1-5 分的置信度评估。如果置信度低于 5 分，系统会触发求助机制，将问题交由人类用户（通过 Web 界面）或更强大的 LLM（如 Llama 3 调用 GPT-4o）来审核和修正。
